@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMoviesTable extends Migration
+class CreateTbMoviesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class CreateMoviesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('synopsis');
-            $table->foreignId('category_id')->constrained('tb_category');
+            $table->foreignId('genre_id')->constrained('tb_genres');
             $table->timestamps();
         });
     }
