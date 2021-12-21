@@ -16,7 +16,7 @@ class MovieFactory extends Factory
         return [
             'name' => $this->faker->sentence(),
             'synopsis' => $this->faker->paragraph(),
-            'genre_id' => $this->faker->numberBetween(1, 8),
+            'genre_id' => $this->faker->numberBetween(1, 6),
         ];
     }
 }
