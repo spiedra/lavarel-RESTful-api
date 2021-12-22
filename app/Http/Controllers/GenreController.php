@@ -100,11 +100,6 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        $genre = Genre::find($id);
-        if ($genre != null) {
-            $genre->delete();
-            return response('Successful', 200);
-        }
-        return response('Genre not found', 404);
+        //
     }
 }

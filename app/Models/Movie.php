@@ -9,4 +9,9 @@ class Movie extends Model
 {
     use HasFactory;
     protected $table = "tb_movies";
+    public $fillable = [
+        'name',
+        'synopsis',
+        'genre_id',
+    ];
 }

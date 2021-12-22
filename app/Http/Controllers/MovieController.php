@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -13,7 +15,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        return Movie::all();
     }
 
     /**
@@ -34,7 +36,19 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'synopsis' => 'required',
+            'genre_id' => 'required',
+        ], [
+            'required' => 'The movie :attribute is required',
+        ]);
+
+        if ($validator->fails()) {
+            return response($validator->getMessageBag(), 200);
+        }
+        Movie::create($request->all());
+        return response('Successful', 200);
     }
 
     /**
@@ -45,7 +59,11 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //
+        $movie = Movie::find($id);
+        if ($movie != null) {
+            return response($movie, 200);
+        }
+        return response('Movie not found', 404);
     }
 
     /**
@@ -68,7 +86,12 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $movie = Movie::find($id);
+        if ($movie != null) {
+            $movie->update($request->all());
+            return response('Successful', 200);
+        }
+        return response('Movie not found', 404);
     }
 
     /**
@@ -79,6 +102,11 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $movie = Movie::find($id);
+        if ($movie != null) {
+            $movie->delete();
+            return response('Successful', 200);
+        }
+        return response('Movie not found', 404);
     }
 }
