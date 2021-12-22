@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
@@ -35,9 +36,17 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        $genre = new Genre();
-        $genre->name = $request->name;
-        $genre->save();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ], [
+            'name.required' => 'The genre name is required',
+        ]);
+
+        if ($validator->fails()) {
+            return response($validator->getMessageBag()->get('name'), 200);
+        }
+        Genre::create($request->all());
+        return response('Successful', 200);
     }
 
     /**
@@ -48,7 +57,11 @@ class GenreController extends Controller
      */
     public function show($id)
     {
-        //
+        $genre = Genre::find($id);
+        if ($genre != null) {
+            return response($genre, 200);
+        }
+        return response('Genre not found', 404);
     }
 
     /**
@@ -71,7 +84,12 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $genre = Genre::find($id);
+        if ($genre != null) {
+            $genre->update($request->all());
+            return response('Successful', 200);
+        }
+        return response('Genre not found', 404);
     }
 
     /**
@@ -82,6 +100,11 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $genre = Genre::find($id);
+        if ($genre != null) {
+            $genre->delete();
+            return response('Successful', 200);
+        }
+        return response('Genre not found', 404);
     }
 }
