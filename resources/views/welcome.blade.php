@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RESTful API</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="/resources/css/app.css" rel="stylesheet">
+    <style>
+        body{font-family:"Nunito", sans-serif}hr{border:1px solid green;width:80%;margin-top:0;margin-bottom:0}main{display:flex;flex-direction:column}main h1{align-self:center}main h2{margin-left:1em;font-size:1.8em}.container__route{margin-left:3em}.container__route h1{font-size:1.6em}.container__route-content{margin-left:1em}.container__route-content:nth-child(6){margin-bottom:1.8em}@media (min-width: 1024px){hr{width:90%}main h2{margin-left:1.5em;font-size:1.8em}.container__route{margin-left:4em}}
+    </style>
 </head>
 
 <body>
