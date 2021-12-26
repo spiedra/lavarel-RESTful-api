@@ -61,7 +61,7 @@ class GenreController extends Controller
         if (!is_null($genre)) {
             return response($genre, 200);
         }
-        return response('Genre not found', 404);
+        return response('Genre not found', 200);
     }
 
     /**
@@ -89,7 +89,7 @@ class GenreController extends Controller
             $genre->update($request->all());
             return response('Successful', 200);
         }
-        return response('Genre not found', 404);
+        return response('Genre not found', 200);
     }
 
     /**
