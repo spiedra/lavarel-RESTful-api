@@ -58,7 +58,7 @@ class GenreController extends Controller
     public function show($id)
     {
         $genre = Genre::find($id);
-        if ($genre != null) {
+        if (!is_null($genre)) {
             return response($genre, 200);
         }
         return response('Genre not found', 404);
@@ -85,7 +85,7 @@ class GenreController extends Controller
     public function update(Request $request, $id)
     {
         $genre = Genre::find($id);
-        if ($genre != null) {
+        if (!is_null($genre)) {
             $genre->update($request->all());
             return response('Successful', 200);
         }
