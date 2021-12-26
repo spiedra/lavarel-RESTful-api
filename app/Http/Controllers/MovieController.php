@@ -60,10 +60,10 @@ class MovieController extends Controller
     public function show($id)
     {
         $movie = Movie::find($id);
-        if ($movie != null) {
+        if (!is_null($movie)) {
             return response($movie, 200);
         }
-        return response('Movie not found', 404);
+        return response('Movie not found', 200);
     }
 
     /**
@@ -87,11 +87,11 @@ class MovieController extends Controller
     public function update(Request $request, $id)
     {
         $movie = Movie::find($id);
-        if ($movie != null) {
+        if (!is_null($movie)) {
             $movie->update($request->all());
             return response('Successful', 200);
         }
-        return response('Movie not found', 404);
+        return response('Movie not found', 200);
     }
 
     /**
@@ -103,10 +103,10 @@ class MovieController extends Controller
     public function destroy($id)
     {
         $movie = Movie::find($id);
-        if ($movie != null) {
+        if (!is_null($movie)) {
             $movie->delete();
             return response('Successful', 200);
         }
-        return response('Movie not found', 404);
+        return response('Movie not found', 200);
     }
 }
