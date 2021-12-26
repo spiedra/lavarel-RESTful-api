@@ -48,7 +48,7 @@ class MovieController extends Controller
             return response($validator->getMessageBag(), 200);
         }
         Movie::create($request->all());
-        return response('Successful', 200);
+        return response('Successful', 200)->header('Content-Type', 'application/json');;
     }
 
     /**
@@ -63,7 +63,7 @@ class MovieController extends Controller
         if (!is_null($movie)) {
             return response($movie, 200);
         }
-        return response('Movie not found', 200);
+        return response('Movie not found', 200)->header('Content-Type', 'application/json');;
     }
 
     /**
@@ -89,9 +89,9 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         if (!is_null($movie)) {
             $movie->update($request->all());
-            return response('Successful', 200);
+            return response('Successful', 200)->header('Content-Type', 'application/json');;
         }
-        return response('Movie not found', 200);
+        return response('Movie not found', 200)->header('Content-Type', 'application/json');;
     }
 
     /**
@@ -105,8 +105,8 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         if (!is_null($movie)) {
             $movie->delete();
-            return response('Successful', 200);
+            return response('Successful', 200)->header('Content-Type', 'application/json');;
         }
-        return response('Movie not found', 200);
+        return response('Movie not found', 200)->header('Content-Type', 'application/json');;
     }
 }

@@ -46,7 +46,7 @@ class GenreController extends Controller
             return response($validator->getMessageBag()->get('name'), 200);
         }
         Genre::create($request->all());
-        return response('Successful', 200);
+        return response('Successful', 200)->header('Content-Type', 'application/json');;
     }
 
     /**
@@ -61,7 +61,7 @@ class GenreController extends Controller
         if (!is_null($genre)) {
             return response($genre, 200);
         }
-        return response('Genre not found', 200);
+        return response('Genre not found', 200)->header('Content-Type', 'application/json');;
     }
 
     /**
@@ -87,9 +87,9 @@ class GenreController extends Controller
         $genre = Genre::find($id);
         if (!is_null($genre)) {
             $genre->update($request->all());
-            return response('Successful', 200);
+            return response('Successful', 200)->header('Content-Type', 'application/json');;
         }
-        return response('Genre not found', 200);
+        return response('Genre not found', 200)->header('Content-Type', 'application/json');;
     }
 
     /**
