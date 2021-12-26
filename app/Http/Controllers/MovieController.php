@@ -39,7 +39,7 @@ class MovieController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'synopsis' => 'required',
-            'genre_id' => 'required',
+            'genre_id' => 'required|exists:App\Models\Genre,id',
         ], [
             'required' => 'The movie :attribute is required',
         ]);
